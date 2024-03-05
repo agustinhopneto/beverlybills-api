@@ -3,7 +3,7 @@ import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
 
 dayjs.extend(isSameOrBefore)
 
-export async function creditCardInvoiceMapper() {
+export async function invoiceMapper() {
   const fileText = await Bun.file('src/lib/sicoob/data/invoice.txt').text()
 
   const fileTextParsed = fileText

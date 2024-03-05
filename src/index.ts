@@ -1,7 +1,7 @@
 import { createExpensePage } from '@lib/notion/services/create-expense-page.service';
-import { creditCardInvoiceMapper } from '@lib/sicoob/credit-card-invoice.mapper';
+import { invoiceMapper } from '@lib/sicoob/invoice.mapper';
 
-const invoice = await creditCardInvoiceMapper();
+const invoice = await invoiceMapper();
 
 for (const register of invoice) {
   await createExpensePage(register)

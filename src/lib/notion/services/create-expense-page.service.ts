@@ -5,9 +5,13 @@ type CreateExpensePageDTO = {
   date: string;
   amount: number;
   location: string;
+  installment?: {
+    number: number;
+    total: number;
+  }
 }
 
-export async function createExpensePage({ title, date, amount, location }: CreateExpensePageDTO) {
+export async function createExpensePage({ title, date, amount, location, installment }: CreateExpensePageDTO) {
   await notion.pages.create({
     parent: {
       type: 'database_id',
@@ -21,6 +25,18 @@ export async function createExpensePage({ title, date, amount, location }: Creat
       Location: {
         type: 'rich_text',
         rich_text: [{ text: { content: location.toUpperCase() } }]
+      },
+      Installment: {
+        type: 'rich_text',
+        rich_text: [
+          { 
+            text: { 
+              content: installment 
+                ? `${installment?.number}/${installment?.total}` 
+                : '' 
+            } 
+          }
+        ]
       },
       Date: {
         type: 'date',
